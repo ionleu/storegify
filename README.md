@@ -4,18 +4,11 @@ Storelify is a front-end package that help you to storage all data into one loca
 
 Storelify stores properties in the `_envName` object in order to keep things tidy. When you set/get/remove a property you only have to specify the property name (and value if you are using the `setItem` function), and the service will automatically add it to the `_envName` localStorage object. It will create the object if it is not yet created.
 
-Before:
+Before: <br />
 <img src="./assets/before.png" />
 
-After:
+After: <br />
 <img src="./assets/after.png" />
-
-This project includes:
-
-- [TypeScript](https://www.typescriptlang.org/)
-- [Rollup](https://rollupjs.org/)
-- [Microsoft API Extractor](https://api-extractor.com/)
-- [TypeDoc](https://typedoc.org/)
 
 ## Usage
 
@@ -47,3 +40,10 @@ export declare class Storelify {
   clearAll(): void;
 }
 ```
+
+This project includes:
+
+- [TypeScript](https://www.typescriptlang.org/)
+- [Rollup](https://rollupjs.org/)
+- [Microsoft API Extractor](https://api-extractor.com/)
+- [TypeDoc](https://typedoc.org/)
