@@ -2,17 +2,21 @@
   "name": "storelify",
   "version": "1.0.1",
   "description": "Storelify is a front-end package that help you to storage all data into one localStorage object in order to keep things tidy.",
-  "main": "dist/storelify.cjs.js",
-  "module": "dist/storelify.esm.js",
-  "browser": "dist/storelify.umd.js",
+  "main": "./dist/storelify.cjs.js",
+  "module": "./dist/storelify.esm.js",
+  "browser": "./dist/storelify.umd.js",
+  "types": "./dist/storelify.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rollup -c",
+    "prebuild:types": "rimraf ./build",
     "build:types": "tsc -p ./tsconfig.json --outDir build --declaration true && api-extractor run",
-    "docs": "typedoc src --out docs"
+    "predocs": "rimraf ./docs",
+    "docs": "typedoc src --out docs",
+    "clean": "rimraf ./build ./dist ./docs"
   },
   "repository": {
     "type": "git",

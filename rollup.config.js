@@ -10,6 +10,7 @@ export default [
       name: "storelify",
       file: pkg.browser,
       format: "umd",
+      sourcemap: true,
     },
     plugins: [
       resolve(),
@@ -20,8 +21,8 @@ export default [
   {
     input: "src/index.ts",
     output: [
-      { file: pkg.main, format: "cjs" },
-      { file: pkg.module, format: "es" },
+      { file: pkg.main, format: "cjs", sourcemap: true },
+      { file: pkg.module, format: "es", sourcemap: true },
     ],
     plugins: [typescript({ tsconfig: "./tsconfig.json" })],
   },
