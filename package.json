@@ -1,6 +1,6 @@
 {
   "name": "storelify",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Storelify is a front-end package that help you to storage all data into one localStorage object in order to keep things tidy.",
   "main": "./dist/storelify.cjs.js",
   "module": "./dist/storelify.esm.js",
