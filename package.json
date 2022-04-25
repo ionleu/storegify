@@ -1,10 +1,10 @@
 {
-  "name": "@li/storegify",
+  "name": "storelify",
   "version": "1.0.0",
-  "description": "Storegify is a front-end package that help you to storage all data into one localStorage object in order to keep things tidy.",
-  "main": "dist/@li/storegify.cjs.js",
-  "module": "dist/@li/storegify.esm.js",
-  "browser": "dist/@li/storegify.umd.js",
+  "description": "Storelify is a front-end package that help you to storage all data into one localStorage object in order to keep things tidy.",
+  "main": "dist/storelify.cjs.js",
+  "module": "dist/storelify.esm.js",
+  "browser": "dist/storelify.umd.js",
   "files": [
     "dist"
   ],
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ionleu/storegify.git"
+    "url": "git+https://github.com/ionleu/storelify.git"
   },
   "keywords": [
     "localStorage",
@@ -25,9 +25,9 @@
   "author": "Ion Leu <ion.leu@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ionleu/storegify/issues"
+    "url": "https://github.com/ionleu/storelify/issues"
   },
-  "homepage": "https://github.com/ionleu/storegify#readme",
+  "homepage": "https://github.com/ionleu/storelify#readme",
   "devDependencies": {
     "@microsoft/api-extractor": "^7.23.0",
     "@rollup/plugin-commonjs": "^22.0.0",

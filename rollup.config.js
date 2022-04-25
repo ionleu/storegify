@@ -7,7 +7,7 @@ export default [
   {
     input: "src/index.ts",
     output: {
-      name: "@li/storegify",
+      name: "storelify",
       file: pkg.browser,
       format: "umd",
     },

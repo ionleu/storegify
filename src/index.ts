@@ -1,1 +1,1 @@
-export const sayHello = (): string => "Hello world!";
+export * from "./storelify";

@@ -1,6 +1,6 @@
 import { isEmpty } from "./utils";
 
-export class Storagify {
+export class Storelify {
   _envName: string;
 
   constructor(envName: string) {
