@@ -1,67 +1,210 @@
+[storelify](../README.md) / [Exports](../modules.md) / Storelify
 
-<a name="readmemd"></a>
+# Class: Storelify
 
-storelify / [Exports](#modulesmd)
+**`todo`**
+Add methods bellow:
 
-# storelify
-
-Storelify is a front-end package that help you to storage all data into one localStorage object in order to keep things tidy.
-
-Storelify stores properties in the `_envName` object in order to keep things tidy. When you set/get/remove a property you only have to specify the property name (and value if you are using the `setItem` function), and the service will automatically add it to the `_envName` localStorage object. It will create the object if it is not yet created.
-
-Before: <br />
-<img src="./assets/before.png" />
-
-After: <br />
-<img src="./assets/after.png" />
-
-## Usage
-
-```sh
-npm i -S storelify
-```
-
-Now, you should be able to use Storelify in your components.
-
-Example:
-
-```ts
-import { Storelify } from "storelify";
-
-// Don't forget to pass an env variable name where all properties will be saved, on initialization.
-const storelify = new Storelify("__fmb_dev");
-
-storelify.setItem("__enable_mock", true);
-console.log("Is mock enabled?", storelify.getItem("__enable_mock")); // true
-```
-
-Avalaiable methods:
-
-```ts
-export declare class Storelify {
-  setItem(key: string, value: any): void;
-  getItem(key: string): any;
-  removeItem(key: string): void;
-  clearAll(): void;
-}
-```
-
-This project includes:
-
-- [TypeScript](https://www.typescriptlang.org/)
-- [Rollup](https://rollupjs.org/)
-- [Microsoft API Extractor](https://api-extractor.com/)
-- [TypeDoc](https://typedoc.org/)
-
-
-<a name="modulesmd"></a>
-
-[storelify](#readmemd) / Exports
-
-# storelify
+- size: return total length of properties
+- keys: return an array of properties names
+- has: return an boolean flag if a property key already exist
 
 ## Table of contents
 
-### Classes
+### Constructors
 
-- [Storelify](classes/Storelify.md)
+- [constructor](Storelify.md#constructor)
+
+### Properties
+
+- [\_namespace](Storelify.md#_namespace)
+
+### Methods
+
+- [\_getJSON](Storelify.md#_getjson)
+- [\_setStorage](Storelify.md#_setstorage)
+- [clearAll](Storelify.md#clearall)
+- [get](Storelify.md#get)
+- [remove](Storelify.md#remove)
+- [set](Storelify.md#set)
+
+## Constructors
+
+### constructor
+
+• **new Storelify**(`namespace`)
+
+#### Parameters
+
+| Name        | Type     |
+| :---------- | :------- |
+| `namespace` | `string` |
+
+#### Defined in
+
+[storelify.ts:22](https://github.com/ionleu/storegify/blob/8b9cd53/src/storelify.ts#L22)
+
+## Properties
+
+### \_namespace
+
+• `Private` **\_namespace**: `string`
+
+#### Defined in
+
+[storelify.ts:20](https://github.com/ionleu/storegify/blob/8b9cd53/src/storelify.ts#L20)
+
+## Methods
+
+### \_getJSON
+
+▸ `Private` **\_getJSON**(): `undefined` \| `ObjectModel`
+
+**`name`** getJSON
+
+**`description`**
+Return JSON object of current local storage
+
+**`since`** 1.0.2
+
+#### Returns
+
+`undefined` \| `ObjectModel`
+
+Constructed key's value
+
+#### Defined in
+
+[storelify.ts:131](https://github.com/ionleu/storegify/blob/8b9cd53/src/storelify.ts#L131)
+
+---
+
+### \_setStorage
+
+▸ `Private` **\_setStorage**(`parsedStorage`): `void`
+
+**`name`** setStorage
+
+**`description`**
+Set localStorage namespace's value in string format
+
+**`since`** 1.0.2
+
+#### Parameters
+
+| Name            | Type          | Description                 |
+| :-------------- | :------------ | :-------------------------- |
+| `parsedStorage` | `ObjectModel` | Object model in JSON format |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[storelify.ts:115](https://github.com/ionleu/storegify/blob/8b9cd53/src/storelify.ts#L115)
+
+---
+
+### clearAll
+
+▸ **clearAll**(): `void`
+
+**`name`** clearAll
+
+**`description`**
+Clear local storage by emptying it
+
+**`since`** 1.0.0
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[storelify.ts:97](https://github.com/ionleu/storegify/blob/8b9cd53/src/storelify.ts#L97)
+
+---
+
+### get
+
+▸ **get**(`key`): `undefined` \| `PropertyValue`
+
+**`name`** get
+
+**`description`**
+Return passed key's value if exists
+
+**`since`** 1.0.0
+
+#### Parameters
+
+| Name  | Type     | Description                                                               |
+| :---- | :------- | :------------------------------------------------------------------------ |
+| `key` | `string` | A string containing the name of the key you want to retrieve the value of |
+
+#### Returns
+
+`undefined` \| `PropertyValue`
+
+Constructed key's value
+
+#### Defined in
+
+[storelify.ts:61](https://github.com/ionleu/storegify/blob/8b9cd53/src/storelify.ts#L61)
+
+---
+
+### remove
+
+▸ **remove**(`key`): `void`
+
+**`name`** remove
+
+**`description`**
+Remove passed key from the local storage
+
+**`since`** 1.0.0
+
+#### Parameters
+
+| Name  | Type     | Description                                                |
+| :---- | :------- | :--------------------------------------------------------- |
+| `key` | `string` | A string containing the name of the key you want to delete |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[storelify.ts:78](https://github.com/ionleu/storegify/blob/8b9cd53/src/storelify.ts#L78)
+
+---
+
+### set
+
+▸ **set**(`key`, `value`): `void`
+
+**`name`** set
+
+**`description`**
+Add key and value to the storage, or update the key's value if already exists
+
+**`since`** 1.0.0
+
+#### Parameters
+
+| Name    | Type            | Description                                                                      |
+| :------ | :-------------- | :------------------------------------------------------------------------------- |
+| `key`   | `string`        | A string containing the name of the key you want to create/update                |
+| `value` | `PropertyValue` | A string containing the value you want to give the key you are creating/updating |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[storelify.ts:36](https://github.com/ionleu/storegify/blob/8b9cd53/src/storelify.ts#L36)
