@@ -26,18 +26,15 @@ export class Storelify {
   /**
    * @name set
    * @description
-   * Add key and value to the storage, or update the key's value if already exists.
+   * Add key and value to the storage, or update the key's value if already exists
    *
-   * @param {string} key - The wanted number to convert
-   * @param {PropertyValue} value - The wanted number to convert
-   * @returns {string} - The converted number into string
+   * @param {string} key - A string containing the name of the key you want to create/update
+   * @param {PropertyValue} value - A string containing the value you want to give the key you are creating/updating
    *
    * @since 1.0.0
    */
   set(key: string, value: PropertyValue) {
-    const currentStorage: string | null = storage.getItem(this._namespace);
-
-    let parsedStorage: ObjectModel | null = parse(currentStorage);
+    let parsedStorage: ObjectModel | null = this.getJSON()
 
     /* Check to see if this is the first time we set something in or not */
     if (!parsedStorage) {
@@ -47,17 +44,26 @@ export class Storelify {
       parsedStorage[key] = value;
     }
 
-    const stringifiedStorage: string = stringify(parsedStorage);
-
-    storage.setItem(this._namespace, stringifiedStorage);
+    this._setStorage(parsedStorage)
   }
 
-  get(key: string) {
-    const currentLocalStorage = JSON.parse(localStorage.getItem(this._envName));
+  /**
+   * @name get
+   * @description
+   * Return passed key's value if exists
+   *
+   * @param {string} key - A string containing the name of the key you want to retrieve the value of.
+   * 
+   * @returns {PropertyValue | undefined} Constructed key's value
+   *
+   * @since 1.0.0
+   */
+  get(key: string): PropertyValue | undefined {
+    let parsedStorage: ObjectModel | null = this.getJSON()
 
-    if (!currentLocalStorage || isEmpty(currentLocalStorage)) return undefined;
+    if (!parsedStorage || isEmpty(parsedStorage)) return undefined;
 
-    return currentLocalStorage[key];
+    return parsedStorage[key];
   }
 
   remove(key: string) {
@@ -78,5 +84,33 @@ export class Storelify {
     currentLocalStorage = {};
 
     localStorage.setItem(this._envName, JSON.stringify(currentLocalStorage));
+  }
+
+   /**
+   * @name setStorage
+   * @description
+   * Set localStorage namespace's value in string format
+   *
+   * @param {ObjectModel} parsedStorage - Object model in JSON format
+   *
+   * @since 1.0.2
+   */
+  private _setStorage(parsedStorage: ObjectModel) {
+    const stringifiedStorage: string = stringify(parsedStorage);
+
+    storage.setItem(this._namespace, stringifiedStorage);
+  }
+
+   /**
+   * @name getJSON
+   * @description
+   * Return JSON object of current local storage
+   * 
+   * @returns {PropertyValue | undefined} Constructed key's value
+   *
+   * @since 1.0.2
+   */
+  getJSON() {
+   return parse(storage.getItem(this._namespace););
   }
 }
