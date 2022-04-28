@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Storelify UMD Test</title>
+    <script src="../dist/storelify.umd.js"></script>
+  </head>
+  <body>
+    <div id="userInfo"></div>
+  </body>
+
+  <script>
+    const Storelify = window.storelify.Storelify;
+
+    const storelify = new Storelify("__umd");
+    storelify.set("__user_info", {
+      firstName: "Joe",
+      lastName: "Doe",
+    });
+
+    const user = storelify.get("__user_info");
+
+    const userDiv = document.getElementById("userInfo");
+    userDiv.innerHTML = `${JSON.stringify(user, null, 4)}`;
+
+    console.table(user);
+  </script>
+</html>
