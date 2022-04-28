@@ -34,7 +34,7 @@ export class Storelify {
    * @since 1.0.0
    */
   set(key: string, value: PropertyValue) {
-    let parsedStorage: ObjectModel | null = this.getJSON()
+    let parsedStorage: ObjectModel | undefined = this._getJSON();
 
     /* Check to see if this is the first time we set something in or not */
     if (!parsedStorage) {
@@ -44,7 +44,7 @@ export class Storelify {
       parsedStorage[key] = value;
     }
 
-    this._setStorage(parsedStorage)
+    this._setStorage(parsedStorage);
   }
 
   /**
@@ -52,41 +52,57 @@ export class Storelify {
    * @description
    * Return passed key's value if exists
    *
-   * @param {string} key - A string containing the name of the key you want to retrieve the value of.
-   * 
+   * @param {string} key - A string containing the name of the key you want to retrieve the value of
+   *
    * @returns {PropertyValue | undefined} Constructed key's value
    *
    * @since 1.0.0
    */
   get(key: string): PropertyValue | undefined {
-    let parsedStorage: ObjectModel | null = this.getJSON()
+    let parsedStorage: ObjectModel | undefined = this._getJSON();
 
     if (!parsedStorage || isEmpty(parsedStorage)) return undefined;
 
     return parsedStorage[key];
   }
 
+  /**
+   * @name remove
+   * @description
+   * Remove passed key from the local storage
+   *
+   * @param {string} key - A string containing the name of the key you want to delete
+   *
+   * @since 1.0.0
+   */
   remove(key: string) {
-    let currentLocalStorage = JSON.parse(localStorage.getItem(this._envName));
+    let parsedStorage: ObjectModel | undefined = this._getJSON();
 
-    if (!currentLocalStorage) {
-      currentLocalStorage = {};
+    if (!parsedStorage) {
+      parsedStorage = {};
     } else {
-      delete currentLocalStorage[key];
+      delete parsedStorage[key];
     }
 
-    localStorage.setItem(this._envName, JSON.stringify(currentLocalStorage));
+    this._setStorage(parsedStorage);
   }
 
+  /**
+   * @name clearAll
+   * @description
+   * Clear local storage by emptying it
+   *
+   * @since 1.0.0
+   */
   clearAll() {
-    let currentLocalStorage = JSON.parse(localStorage.getItem(this._envName));
+    let parsedStorage: ObjectModel | undefined = this._getJSON();
 
-    currentLocalStorage = {};
+    parsedStorage = {};
 
-    localStorage.setItem(this._envName, JSON.stringify(currentLocalStorage));
+    this._setStorage(parsedStorage);
   }
 
-   /**
+  /**
    * @private
    * @name setStorage
    * @description
@@ -102,17 +118,21 @@ export class Storelify {
     storage.setItem(this._namespace, stringifiedStorage);
   }
 
-   /**
+  /**
    * @private
    * @name getJSON
    * @description
    * Return JSON object of current local storage
-   * 
+   *
    * @returns {PropertyValue | undefined} Constructed key's value
    *
    * @since 1.0.2
    */
   private _getJSON() {
-   return parse(storage.getItem(this._namespace););
+    const currentStorage = storage.getItem(this._namespace);
+
+    if (!currentStorage) return undefined;
+
+    return parse(currentStorage);
   }
 }
