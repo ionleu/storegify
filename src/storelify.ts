@@ -1,7 +1,7 @@
 /**
  * @file Manage all functionalities of Storelify package
  * @author Ion Leu <ion.leu@gmail.com>
- * @version 1.0.2
+ * @version 1.1.0
  */
 
 import { ObjectModel, PropertyValue } from "./models";
