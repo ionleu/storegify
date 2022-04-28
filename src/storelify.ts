@@ -87,6 +87,7 @@ export class Storelify {
   }
 
    /**
+   * @private
    * @name setStorage
    * @description
    * Set localStorage namespace's value in string format
@@ -102,6 +103,7 @@ export class Storelify {
   }
 
    /**
+   * @private
    * @name getJSON
    * @description
    * Return JSON object of current local storage
@@ -110,7 +112,7 @@ export class Storelify {
    *
    * @since 1.0.2
    */
-  getJSON() {
+  private _getJSON() {
    return parse(storage.getItem(this._namespace););
   }
 }
