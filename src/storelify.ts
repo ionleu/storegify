@@ -1,32 +1,58 @@
-import { isEmpty } from "./utils";
+/**
+ * @file Manage all functionalities of Storelify package
+ * @author Ion Leu <ion.leu@gmail.com>
+ * @version 1.0.2
+ */
 
+import { ObjectModel, PropertyValue } from "./models";
+import { isEmpty, parse, stringify } from "./utils";
+
+const storage = localStorage || window.localStorage;
+
+/**
+ * @TODO
+ * Add methods bellow:
+ * - size: return total length of properties
+ * - keys: return an array of properties names
+ * - has: return an boolean flag if a property key already exist
+ */
 export class Storelify {
-  _envName: string;
+  private _namespace: string;
 
-  constructor(envName: string) {
-    this._envName = envName;
+  constructor(namespace: string) {
+    this._namespace = namespace;
   }
 
-  /* The localStorageService stores properties in the _envName object in order to keep things tidy. 
-  When you set/get/remove a property you only have to specify the property name (and value if you 
-    are using the setItem function), and the service will automatically add it to the _envName localStorage object. 
-    It will create the object if it is not yet created */
+  /**
+   * @name set
+   * @description
+   * Add key and value to the storage, or update the key's value if already exists.
+   *
+   * @param {string} key - The wanted number to convert
+   * @param {PropertyValue} value - The wanted number to convert
+   * @returns {string} - The converted number into string
+   *
+   * @since 1.0.0
+   */
+  set(key: string, value: PropertyValue) {
+    const currentStorage: string | null = storage.getItem(this._namespace);
 
-  setItem(key: string, value: any) {
-    let currentLocalStorage = JSON.parse(localStorage.getItem(this._envName));
+    let parsedStorage: ObjectModel | null = parse(currentStorage);
 
     /* Check to see if this is the first time we set something in or not */
-    if (!currentLocalStorage) {
-      currentLocalStorage = {};
-      currentLocalStorage[key] = value;
+    if (!parsedStorage) {
+      parsedStorage = {};
+      parsedStorage[key] = value;
     } else {
-      currentLocalStorage[key] = value;
+      parsedStorage[key] = value;
     }
 
-    localStorage.setItem(this._envName, JSON.stringify(currentLocalStorage));
+    const stringifiedStorage: string = stringify(parsedStorage);
+
+    storage.setItem(this._namespace, stringifiedStorage);
   }
 
-  getItem(key: string) {
+  get(key: string) {
     const currentLocalStorage = JSON.parse(localStorage.getItem(this._envName));
 
     if (!currentLocalStorage || isEmpty(currentLocalStorage)) return undefined;
@@ -34,7 +60,7 @@ export class Storelify {
     return currentLocalStorage[key];
   }
 
-  removeItem(key: string) {
+  remove(key: string) {
     let currentLocalStorage = JSON.parse(localStorage.getItem(this._envName));
 
     if (!currentLocalStorage) {
