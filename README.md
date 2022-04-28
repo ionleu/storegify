@@ -38,11 +38,15 @@ class Storelify {
   get(key: string): PropertyValue | undefined;
   remove(key: string): void;
   clearAll(): void;
+  size(): number;
+  keys(): string[];
+  has(key: string): boolean;
 }
 ```
 
 > **More detalied documentation [here](DOCUMENTATION.md)**
 
+<br />
 This project includes:
 
 - [TypeScript](https://www.typescriptlang.org/)
